@@ -1,0 +1,19 @@
+{% extends 'myapp/base.html' %} 
+{% load static %} 
+{% block content %}
+
+<!-- templates/documents/document_detail.html -->
+<!-- templates/documents/document_detail.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ document.title }}</title>
+</head>
+<body>
+    <h1>{{ document.title }}</h1>
+    {{ markdownify(document.content) }}
+</body>
+</html>
+
+{% endblock content %}

@@ -1,0 +1,52 @@
+{% extends 'myapp/base.html' %} 
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<!-- Sidebar -->
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:10%">
+  <h3 class="w3-bar-item">Menu</h3>
+  <h1>Book List</h1>
+  {% if books %}
+    <ul>
+      {% for book in books %}
+      <li>
+        <a href="{% url 'book-detail-page' book.slug %}">{{ book.title }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>There are no books in the library.</p>
+  {% endif %}
+</div>
+
+      
+</body>
+</html>
+
+<!-- 
+<div class="flex-shrink-0 p-3" style="width: 15%;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-body-emphasis text-decoration-none border-bottom">
+      <span class="fs-5 fw-semibold text-white">Collapsible</span>
+   </a>
+    <ul class="list-unstyled ps-0">
+      <li class="mb-1">
+        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed text-white" data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+            Collapsible
+        </button>
+        <div class="collapse show" id="home-collapse">
+          <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+            {% for book in books %} 
+               <li><a href="{% url 'book-detail-page' book.slug %}" class="link-body-emphasis d-inline-flex text-decoration-none rounded text-white">{{ book.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </div>
+      </li>
+    </ul>
+  </div> -->
+{% endblock %}

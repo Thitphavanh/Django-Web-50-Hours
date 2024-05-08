@@ -1,0 +1,35 @@
+{% extends 'myapp/base.html' %} 
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<body>
+
+<!-- Sidebar -->
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:10%">
+
+</div>
+
+<!-- Page Content -->
+<div style="margin-left:25%">
+
+
+<img src="img_car.jpg" alt="Car" style="width:100%">
+
+<div class="w3-container">
+    <h1>{{ all_book.title }}</h1>
+    <p><strong>Author:</strong> {{ all_book.author }}</p>
+    <p>{{ all_book.description }}</p>
+    <p><strong>Published Date:</strong> {{ all_book.date_created }}</p>
+</div>
+
+</div>
+      
+</body>
+</html>
+
+
+{% endblock %}
