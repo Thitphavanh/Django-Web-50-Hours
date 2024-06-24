@@ -25,7 +25,12 @@ def blog(request):
 
     return render(request, "myapp/blog.html", context)
 
+def blog_detail(request, id):
+    post = Post.objects.get(id=id)
 
+    context = {"post": post}
+
+    return render(request, "myapp/blog-detail.html", context)
 
 
 def youtube(request):
@@ -57,11 +62,11 @@ def post_document_list(request):
     documents = Post.objects.all()
     context = {'documents': documents}
     
-    return render(request, 'myapp/post-document-list.html',context)
+    return render(request, 'myapp/post-document-list.html', context)
 
 
 def post_document_detail(request, slug):
     document = Post.objects.get(slug=slug)
-    context = {'document': document} 
+    context = {'document': document,'markdownify': markdownify} 
     
-    return render(request, 'myapp/post-document-detail.html',)
+    return render(request, 'myapp/post-document-detail.html', context)

@@ -4,6 +4,8 @@ from django.contrib.auth.models import *
 from taggit.managers import TaggableManager
 from shortuuid.django_fields import ShortUUIDField
 from embed_video.fields import EmbedVideoField
+from markdownx.models import MarkdownxField
+
 class Author(models.Model):
     name = models.CharField(max_length=100)
     image = models.ImageField(upload_to="author-image/", null=True, blank=True, default='default.png')
@@ -16,7 +18,7 @@ class Post(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE, null=True, blank=True)
     title = models.CharField(max_length=200)
     description = models.TextField(max_length=280, null=True, blank=True)
-    body = models.TextField(null=True, blank=True)
+    body = MarkdownxField(null=True, blank=True)
     images = models.ImageField(upload_to="post-images/", null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     date_updated = models.DateTimeField(auto_now=True)

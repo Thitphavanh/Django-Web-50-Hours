@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "django_summernote",
     "taggit",
     "embed_video",
+    "markdownx",
 ]
 
 MIDDLEWARE = [

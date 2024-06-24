@@ -5,4 +5,3 @@ django-embed-video
 setuptools
 shortuuid
 Pillow
-mdx-mdx

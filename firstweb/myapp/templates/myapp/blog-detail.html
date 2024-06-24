@@ -1,72 +1,266 @@
 {% extends 'myapp/base.html' %} 
 {% load static %} 
 {% block content %}
-    <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
-      <button class="btn btn-bd-primary py-2 dropdown-toggle d-flex align-items-center"
-              id="bd-theme"
-              type="button"
-              aria-expanded="false"
-              data-bs-toggle="dropdown"
-              aria-label="Toggle theme (auto)">
-        <svg class="bi my-1 theme-icon-active" width="1em" height="1em"><use href="#circle-half"></use></svg>
-        <span class="visually-hidden" id="bd-theme-text">Toggle theme</span>
-      </button>
-      <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="bd-theme-text">
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="light" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#sun-fill"></use></svg>
-            Light
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center" data-bs-theme-value="dark" aria-pressed="false">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#moon-stars-fill"></use></svg>
-            Dark
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-        <li>
-          <button type="button" class="dropdown-item d-flex align-items-center active" data-bs-theme-value="auto" aria-pressed="true">
-            <svg class="bi me-2 opacity-50 theme-icon" width="1em" height="1em"><use href="#circle-half"></use></svg>
-            Auto
-            <svg class="bi ms-auto d-none" width="1em" height="1em"><use href="#check2"></use></svg>
-          </button>
-        </li>
-      </ul>
-    </div>
-<main class="container">
-  <div class="p-4 p-md-5 mb-4 rounded text-body-emphasis bg-body-secondary">
-    <div class="col-lg-6 px-0">
-      <h1 class="display-4 fst-italic">Title of a longer featured blog post</h1>
-      <p class="lead my-3">Multiple lines of text that form the lede, informing new readers quickly and efficiently about what’s most interesting in this post’s contents.</p>
-      <p class="lead mb-0"><a href="#" class="text-body-emphasis fw-bold">Continue reading...</a></p>
-    </div>
-  </div>
 
-  <div class="row mb-2">
-    <div class="col-md-6">
-      <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-        {% for post in all_post %}
-        <div class="col p-4 d-flex flex-column position-static">
-          <strong class="d-inline-block mb-2 text-primary-emphasis">World</strong>
-          <h3 class="mb-0">{{ post.title }}</h3>
-          <div class="mb-1 text-body-secondary">Nov 12</div>
-          <p class="card-text mb-auto">{{ post.description }}</p>
-          <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-            Read more
-            <svg class="bi"><use xlink:href="#chevron-right"/></svg>
-          </a>
-        </div>
-        <div class="col-auto d-none d-lg-block">
 
-            <img src="{{ post.images.url }}" alt="" style="width: 200px; height: 250px; object-fit: cover;">
-  
-        </div>
-        {% endfor %}
+    <!-- ============================ COMPONENT 1 ================================= -->
+    <div class="card">
+      <div class="row no-gutters">
+          <aside class="col-md-6">
+          <article class="gallery-wrap"> 
+              <div class="img-big-wrap">
+                <a href="#"><img src="{{ post.images.url }}" style="object-fit: cover; "></a>
+              </div> <!-- img-big-wrap.// -->
+              
+          </article> <!-- gallery-wrap .end// -->
+          </aside>
+          <main class="col-md-6 border-left">
+            <article class="content-body text-left" style="padding: 20px;">
+            
+            <h2 class="title">{{ post.title }}</h2>
+            
+            <div class="mb-3"> 
+                <p class="price h4">10000 THB</p> 
+            </div> 
+            
+            <p>{{ post.description }}</p>
+            
+            
+            <hr>
+                <!-- <div class="row">
+                    <div class="item-option-select">
+                        <h6>Choose Color</h6>
+                        <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                          <label class="btn btn-light">
+                            <input type="radio" name="radio_color"> Silver
+                          </label>
+                          <label class="btn btn-light">
+                            <input type="radio" name="radio_color" > Gray
+                          </label>
+                          <label class="btn btn-light active">
+                            <input type="radio" name="radio_color checked"> Gold
+                          </label>
+                          <label class="btn btn-light">
+                            <input type="radio" name="radio_color"> Black
+                          </label>
+                        </div> 
+                    </div> 
+                </div>  -->
+                <!-- <div class="row">
+                    <div class="item-option-select">
+                        <h6>Select Size</h6>
+                        <div class="btn-group btn-group-sm btn-group-toggle" data-toggle="buttons">
+                          <label class="btn btn-light">
+                            <input type="radio" name="radio_color"> S
+                          </label>
+                          <label class="btn btn-light active">
+                            <input type="radio" name="radio_color" checked> M
+                          </label>
+                          <label class="btn btn-light">
+                            <input type="radio" name="radio_color"> L
+                          </label>
+                          <label class="btn btn-light">
+                            <input type="radio" name="radio_color"> XL
+                          </label>
+                        </div> 
+                    </div>
+                </div>  -->
+                <hr>
+                
+                <!-- {% if single_product.stock <= 0 %}
+                  <h5 class="text-danger">Out of Stocks</h5>
+                {% else %}
+                  {% if in_cart %}
+                    <a href="#" class="btn  btn-danger"> <span class="text">ເພີ່ມເຂົ້າແລ້ວ</span> <i class="fas fa-check"></i></a>
+                    <a href="#" class="btn  btn-outline-dark"> <span class="text">ເບິ່ງສິນຄ້າໃນກະຕ່າ</span></a>
+                  {% else %} 
+                    <a href="#" class="btn  btn-dark"> <span class="text">ເພິ່ມເຂົ້າກະຕ່າ</span> <i class="fas fa-shopping-cart"></i>  </a>
+                  {% endif %}
+                {% endif %} -->
+                
+                
+            </article> <!-- product-info-aside .// -->
+          </main> <!-- col.// -->
+      </div> <!-- row.// -->
+  </div> <!-- card.// -->
+  <div style="padding-top: 100px;"></div>
+
+      <div class="py-5 text-left">
+       
+        <p class="lead">{{ post.body }}</p>
       </div>
-    </div>
-  </div>
+  
+      <div class="row g-5 text-left">
+        <div class="col-md-5 col-lg-4 order-md-last">
+          <div class="container border p-3 rounded mt-2">
+            <h6>โอนผ่าน Promptpay</h6>
+          </div>
+          <div class="container border p-3 rounded mt-2">
+            <h6>Scan QR Code ผ่าน app ธนาคาร</h6>
+            <div class="qr-code img-responsive">
+              <img src="https://promptpay.io/0610783431/" id="qrcode_frame" frameborder="0" width="auto" height="auto"></img>
+            </div>
+          </div>
+    
+        </div>
+        <div class="col-md-7 col-lg-8">
+          <h4 class="mb-3">Billing address</h4>
+          <form class="needs-validation" novalidate>
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">First name</label>
+                <input type="text" class="form-control" id="firstName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid first name is required.
+                </div>
+              </div>
+  
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Last name</label>
+                <input type="text" class="form-control" id="lastName" placeholder="" value="" required>
+                <div class="invalid-feedback">
+                  Valid last name is required.
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group has-validation">
+                  <span class="input-group-text">@</span>
+                  <input type="text" class="form-control" id="username" placeholder="Username" required>
+                <div class="invalid-feedback">
+                    Your username is required.
+                  </div>
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="email" class="form-label">Email <span class="text-body-secondary">(Optional)</span></label>
+                <input type="email" class="form-control" id="email" placeholder="you@example.com">
+                <div class="invalid-feedback">
+                  Please enter a valid email address for shipping updates.
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" placeholder="1234 Main St" required>
+                <div class="invalid-feedback">
+                  Please enter your shipping address.
+                </div>
+              </div>
+  
+              <div class="col-12">
+                <label for="address2" class="form-label">Address 2 <span class="text-body-secondary">(Optional)</span></label>
+                <input type="text" class="form-control" id="address2" placeholder="Apartment or suite">
+              </div>
+  
+              <div class="col-md-5">
+                <label for="country" class="form-label">Country</label>
+                <select class="form-select" id="country" required>
+                  <option value="">Choose...</option>
+                  <option>United States</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please select a valid country.
+                </div>
+              </div>
+  
+              <div class="col-md-4">
+                <label for="state" class="form-label">State</label>
+                <select class="form-select" id="state" required>
+                  <option value="">Choose...</option>
+                  <option>California</option>
+                </select>
+                <div class="invalid-feedback">
+                  Please provide a valid state.
+                </div>
+              </div>
+  
+              <div class="col-md-3">
+                <label for="zip" class="form-label">Zip</label>
+                <input type="text" class="form-control" id="zip" placeholder="" required>
+                <div class="invalid-feedback">
+                  Zip code required.
+                </div>
+              </div>
+            </div>
+  
+            <hr class="my-4">
+  
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="same-address">
+              <label class="form-check-label" for="same-address">Shipping address is the same as my billing address</label>
+            </div>
+  
+            <div class="form-check">
+              <input type="checkbox" class="form-check-input" id="save-info">
+              <label class="form-check-label" for="save-info">Save this information for next time</label>
+            </div>
+  
+            <hr class="my-4">
+  
+            <h4 class="mb-3">Payment</h4>
+  
+            <div class="my-3">
+              <div class="form-check">
+                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required>
+                <label class="form-check-label" for="credit">Credit card</label>
+              </div>
+              <div class="form-check">
+                <input id="debit" name="paymentMethod" type="radio" class="form-check-input" required>
+                <label class="form-check-label" for="debit">Debit card</label>
+              </div>
+              <div class="form-check">
+                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input" required>
+                <label class="form-check-label" for="paypal">PayPal</label>
+              </div>
+            </div>
+  
+            <div class="row gy-3">
+              <div class="col-md-6">
+                <label for="cc-name" class="form-label">Name on card</label>
+                <input type="text" class="form-control" id="cc-name" placeholder="" required>
+                <small class="text-body-secondary">Full name as displayed on card</small>
+                <div class="invalid-feedback">
+                  Name on card is required
+                </div>
+              </div>
+  
+              <div class="col-md-6">
+                <label for="cc-number" class="form-label">Credit card number</label>
+                <input type="text" class="form-control" id="cc-number" placeholder="" required>
+                <div class="invalid-feedback">
+                  Credit card number is required
+                </div>
+              </div>
+  
+              <div class="col-md-3">
+                <label for="cc-expiration" class="form-label">Expiration</label>
+                <input type="text" class="form-control" id="cc-expiration" placeholder="" required>
+                <div class="invalid-feedback">
+                  Expiration date required
+                </div>
+              </div>
+  
+              <div class="col-md-3">
+                <label for="cc-cvv" class="form-label">CVV</label>
+                <input type="text" class="form-control" id="cc-cvv" placeholder="" required>
+                <div class="invalid-feedback">
+                  Security code required
+                </div>
+              </div>
+            </div>
+  
+            <hr class="my-4">
+  
+            <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+          </form>
+        </div>
+      </div>
+
+<div style="padding-top: 100px;"></div>
+
 
   <div class="row g-5">
     <div class="col-md-8">
@@ -255,16 +449,5 @@
       </div>
     </div>
   </div>
-
-</main>
-
-<footer class="py-5 text-center text-body-secondary bg-body-tertiary">
-  <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a href="https://twitter.com/mdo">@mdo</a>.</p>
-  <p class="mb-0">
-    <a href="#">Back to top</a>
-  </p>
-</footer>
-<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-
 
 {% endblock content %}

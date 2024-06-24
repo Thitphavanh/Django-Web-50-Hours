@@ -12,7 +12,8 @@
 </head>
 <body>
     <h1>{{ document.title }}</h1>
-    {{ markdownify(document.content) }}
+    {{ document.body | safe }}
+    
 </body>
 </html>
 

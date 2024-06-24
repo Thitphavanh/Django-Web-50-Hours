@@ -12,7 +12,7 @@
     <h1>Document List</h1>
     <ul>
         {% for document in documents %}
-            <li><a href="{% url 'document-detail' pk=document.pk %}">{{ document.title }}</a></li>
+            <li><a href="{% url 'post-document-detail-page' document.slug %}">{{ document.title }}</a></li>
         {% endfor %}
     </ul>
 </body>
