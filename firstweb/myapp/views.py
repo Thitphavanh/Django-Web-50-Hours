@@ -53,7 +53,7 @@ class BookDetailView(DetailView):
     context_object_name = "all_book"
 
 
-def product_buyer(request, slug):
+def product_detail(request, slug):
     product = Product.objects.get(slug=slug)
     context = {"product": product, "product_price": product.normal_price}
 
@@ -96,4 +96,4 @@ def product_buyer(request, slug):
 
         new_order.save()
 
-    return render(request, "myapp/product-buyer.html", context)
+    return render(request, "myapp/product-detail.html", context)

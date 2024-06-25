@@ -105,7 +105,6 @@ class Product(models.Model):
 
 
 class Order(models.Model):
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     products = models.ForeignKey(Product, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100, null=True)
     last_name = models.CharField(max_length=100, null=True)
@@ -117,5 +116,3 @@ class Order(models.Model):
     shipping_cost = models.FloatField(default=0)
     slip = models.ImageField(upload_to="products-slip/", null=True)
 
-    # def __str__(self):
-    #     return self.first_name
