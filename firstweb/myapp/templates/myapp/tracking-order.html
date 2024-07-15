@@ -1,0 +1,51 @@
+{% extends 'myapp/base.html' %} 
+{% load static %} 
+{% block content %}
+<span style="color: red;">!!! กรุณาถ่ายภาพหน้านี้เก็บไว้เป็นหลักฐาน !!!</span>
+<br><br>
+เลขที่อ้างอิง <span style="color: tomato;">{{ order_id }}</span>
+
+
+<div class="container border p-4">
+    <div class="d-flex flex-column justify-content-center text-center">
+  
+        {% if tracking_id.tracking_number != '-' or tracking_id.tracking_number != '-' or tracking_id.tracking_number != None %}
+  
+            {% if tracking_id.tracking_number == None  %}
+                <p>หากมีความคืบหน้าทีมงานจะรีบติดต่อท่านทางอีเมล หากมีข้อสงสัยให้ติดต่อ</p>
+  
+            {% else %}
+                <h1>คลิกรหัสเพื่อเช็คสถานะ: <a href="https://www.flashexpress.co.th/tracking/?se={{tracking_id.tracking_number}}">{{tracking_id.tracking_number}}</a></h1>
+                <p>หมายเหตุ: ส่งด้วย Flash Express</p>
+            {% endif %}
+        {% else %}
+  
+            <p>หนังสือยังไม่จัดส่ง รอทีมงานจัดเตรียมให้ในเร็ววัน หากรอเกิน 3 วันแล้วสถานะยังไม่ขึ้น ให้ติดต่อ</p>
+  
+        {% endif %}
+        <hr>
+  
+        <h4 style="font-style: bold; color: black;"> รายละเอียด: </h4>
+        <h5>สินค้า: {{ tracking_id.products.name }}</h5>
+        <h5>จำนวน: {{ tracking_id.count }} {{ tracking_id.products.unit }} </h5>
+        <h5>ราคาสินค้า: <span id="book_total">{{ buyer_price }}</span> บาท</h5>
+        <h5>ค่าส่ง: <span id="shipping_total">{{ shipping_cost}}</span> บาท</h5>
+        <br>
+        <h4>รวม: <span id="all_total">{{ all_price }}</span> บาท</h4>
+        <br>
+        <div class="container">
+         <a href="{{ tracking_id.slip.url }}"><img src="{{ tracking_id.slip.url }}" alt="" width="400" class=" border border-dark"></a> 
+        </div>
+        <br>
+        <p>--------------------------------------------</p>
+        <h4 style="font-style: bold; color: black;"> ช้อมูลผู้ซื้อ: </h4>
+        <h5>ชื่อ: {{ tracking_id.first_name }}</h5>
+        <h5>Email: {{ tracking_id.email }}</h5>
+        <h5>เบอร์โทร: {{ tracking_id.tel }}</h5>
+        <h5>ที่อยู่: {{ tracking_id.address }}</h5>
+  
+    </div>
+  </div>
+  <script>
+  </script>
+{% endblock content %}

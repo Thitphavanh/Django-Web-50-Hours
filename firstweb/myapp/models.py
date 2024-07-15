@@ -4,6 +4,7 @@ from django.contrib.auth.models import *
 from taggit.managers import TaggableManager
 from shortuuid.django_fields import ShortUUIDField
 from embed_video.fields import EmbedVideoField
+from django.contrib.auth.models import User
 
 
 class Author(models.Model):
@@ -104,6 +105,7 @@ class Product(models.Model):
         return self.name
 
 
+# Product Order
 class Order(models.Model):
     products = models.ForeignKey(Product, on_delete=models.CASCADE)
     first_name = models.CharField(max_length=100, null=True)
@@ -115,4 +117,15 @@ class Order(models.Model):
     buyer_price = models.FloatField(default=0)
     shipping_cost = models.FloatField(default=0)
     slip = models.ImageField(upload_to="products-slip/", null=True)
+    tracking_number = models.CharField(max_length=100, null=True, blank=True)
+    not_complete = models.BooleanField(default=False)
 
+
+class TrackingOrderID(models.Model):
+    tracking_order = models.ForeignKey(
+        Order, on_delete=models.CASCADE, related_name="order_id"
+    )
+    order_id = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.order_id

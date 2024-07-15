@@ -5,3 +5,4 @@ django-embed-video
 setuptools
 shortuuid
 Pillow
+django-markdownx
